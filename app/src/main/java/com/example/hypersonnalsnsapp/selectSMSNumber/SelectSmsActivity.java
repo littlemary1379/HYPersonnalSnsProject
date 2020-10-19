@@ -47,7 +47,7 @@ public class SelectSmsActivity extends AppCompatActivity {
                 "date DESC");
 
         while (c.moveToNext()) {
-            Message msg = new Message(); // 따로 저는 클래스를 만들어서 담아오도록 했습니다.
+            Message msg = new Message();
 
             long messageId = c.getLong(0);
             msg.setMessageId(String.valueOf(messageId));

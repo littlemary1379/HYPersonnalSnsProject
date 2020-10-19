@@ -6,4 +6,8 @@
     <string name="main_button_next">다음</string>
     <string name="main_getWrongNumber">잘못된 형식의 전화번호입니다.</string>
 
+    <!--selectSMS-->
+    <string name="select_sms_explanation">보내고 싶은 전화번호를 선택해주세요.</string>
+    <string name="select_sms_selection">선택</string>
+
 </resources>
