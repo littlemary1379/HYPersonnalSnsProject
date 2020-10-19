@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.ContentResolver;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.hypersonnalsnsapp.R;
 import com.example.hypersonnalsnsapp.main.MainActivity;
+import com.example.hypersonnalsnsapp.selectSMSNumber.adapter.SelectSMSAdapter;
 import com.example.hypersonnalsnsapp.selectSMSNumber.model.Message;
 import com.example.hypersonnalsnsapp.util.CheckPermissionUtil;
 import com.example.hypersonnalsnsapp.util.Constant;
@@ -28,13 +31,29 @@ public class SelectSmsActivity extends AppCompatActivity {
 
     private static final String TAG = "SelectSmsActivity";
 
+    private RecyclerView recyclerView;
+
     private List<Message> msgList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_sms);
+        findView();
+        init();
         readSMSMessage();
+    }
+
+    private void findView(){
+        recyclerView = findViewById(R.id.recyclerview);
+    }
+
+
+
+    private void init(){
+        SelectSMSAdapter selectSMSAdapter = new SelectSMSAdapter();
+        recyclerView.setLayoutManager(new LinearLayoutManager(SelectSmsActivity.this));
+        recyclerView.setAdapter(selectSMSAdapter);
     }
 
 
@@ -74,6 +93,7 @@ public class SelectSmsActivity extends AppCompatActivity {
         }
         
         DebugLogUtil.logD(TAG, "msgList.size() : "+msgList.size());
+
 
     }
 }
