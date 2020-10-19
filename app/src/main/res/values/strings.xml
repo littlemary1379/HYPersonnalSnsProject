@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">HYPersonnalSNSApp</string>
+
+    <!--Main-->
+    <string name="main_guide_explanation">내 전화번호를 입력하세요.</string>
+    <string name="main_button_next">다음</string>
+    <string name="main_getWrongNumber">잘못된 형식의 전화번호입니다.</string>
+
+</resources>
