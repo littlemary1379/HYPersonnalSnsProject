@@ -49,11 +49,15 @@ public class SelectSmsActivity extends AppCompatActivity {
         readSMSMessage();
     }
 
+    @Override
+    public void finish() {
+        overridePendingTransition(R.anim.in_left,R.anim.out_right);
+        super.finish();
+    }
+
     private void findView(){
         recyclerView = findViewById(R.id.recyclerview);
     }
-
-
 
     private void init(){
         selectSMSAdapter = new SelectSMSAdapter();

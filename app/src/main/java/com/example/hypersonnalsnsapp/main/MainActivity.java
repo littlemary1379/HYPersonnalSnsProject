@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         }
         String phoneNum = telephonyManager.getLine1Number();
         if(phoneNum.startsWith("+82")){
-            phoneNum=phoneNum.replace("+82","010");
+            phoneNum=phoneNum.replace("+82","0");
         }
 
         return phoneNum;
@@ -103,10 +103,13 @@ public class MainActivity extends AppCompatActivity {
                         if (phoneNumber.length() < 11) {
                             DebugLogUtil.logD(TAG, "비어있음");
                             Toast.makeText(this, R.string.main_getWrongNumber, Toast.LENGTH_SHORT).show();
+                            return;
 
                         } else if (!phoneNumber.equals(getMyPhoneNumber())) {
                             DebugLogUtil.logD(TAG, getMyPhoneNumber());
                             Toast.makeText(this, R.string.main_getOtherNumber, Toast.LENGTH_SHORT).show();
+                            return;
+
                         } else {
                             getPhoneNumber();
                             checkPermission();
