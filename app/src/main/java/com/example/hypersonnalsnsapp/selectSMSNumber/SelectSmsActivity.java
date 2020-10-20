@@ -24,7 +24,11 @@ import com.example.hypersonnalsnsapp.util.CheckPermissionUtil;
 import com.example.hypersonnalsnsapp.util.Constant;
 import com.example.hypersonnalsnsapp.util.DebugLogUtil;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class SelectSmsActivity extends AppCompatActivity {
@@ -34,6 +38,7 @@ public class SelectSmsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     private List<Message> msgList=new ArrayList<>();
+    private SelectSMSAdapter selectSMSAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +56,7 @@ public class SelectSmsActivity extends AppCompatActivity {
 
 
     private void init(){
-        SelectSMSAdapter selectSMSAdapter = new SelectSMSAdapter();
+        selectSMSAdapter = new SelectSMSAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(SelectSmsActivity.this));
         recyclerView.setAdapter(selectSMSAdapter);
     }
@@ -84,16 +89,19 @@ public class SelectSmsActivity extends AppCompatActivity {
             msg.setContactId_string(contactId_string);
 
             long timestamp = c.getLong(4);
-            msg.setTimeStamp(String.valueOf(timestamp));
+            msg.setTimeStamp(timestamp);
 
             String body = c.getString(5);
             msg.setBody(body);
 
             msgList.add(msg);
         }
-        
+
+        //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMDD");
         DebugLogUtil.logD(TAG, "msgList.size() : "+msgList.size());
 
+
+        selectSMSAdapter.loadMsg(msgList);
 
     }
 }

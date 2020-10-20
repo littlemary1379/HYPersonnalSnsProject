@@ -4,18 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:padding="10dp">
+    >
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/linearLayoutContent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="20dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="80dp">
 
         <TextView
+            android:id="@+id/textViewName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="사람 이름 혹은 번호"
@@ -23,7 +28,8 @@
             android:textColor="@color/color_292929" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/textViewContent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="최근 내용"
@@ -32,6 +38,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayoutData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -41,6 +48,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textViewDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="X월 X일"
@@ -56,5 +64,12 @@
             android:textColor="@color/color_292929"/>
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_CFCFCF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,7 @@ public class Message {
     public String address; //휴대폰번호
     public String contactId;
     public String contactId_string;
-    public String timeStamp; //시간
+    public long timeStamp; //시간
     public String body; //문자내용
 
 
