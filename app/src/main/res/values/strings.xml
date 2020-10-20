@@ -5,6 +5,7 @@
     <string name="main_guide_explanation">내 전화번호를 입력하세요.</string>
     <string name="main_button_next">다음</string>
     <string name="main_getWrongNumber">잘못된 형식의 전화번호입니다.</string>
+    <string name="main_getOtherNumber">현재 휴대폰 번호와 다른 번호입니다.</string>
 
     <!--selectSMS-->
     <string name="select_sms_explanation">보내고 싶은 전화번호를 선택해주세요.</string>

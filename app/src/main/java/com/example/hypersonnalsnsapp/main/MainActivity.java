@@ -1,12 +1,14 @@
 package com.example.hypersonnalsnsapp.main;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -41,11 +43,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void  checkSharedReference(){
-        SharedPreferences sharedPreferences=MainActivity.this.getSharedPreferences(SharedPreferenceUtil.SHARED_PREFERENCES_KEY, Activity.MODE_PRIVATE);
+    private void checkSharedReference() {
+        SharedPreferences sharedPreferences = MainActivity.this.getSharedPreferences(SharedPreferenceUtil.SHARED_PREFERENCES_KEY, Activity.MODE_PRIVATE);
         String storedPhoneNumber = sharedPreferences.getString(Constant.sharedPreference_phoneNumber, "");
 
-        if(!storedPhoneNumber.equals("")){
+        if (!storedPhoneNumber.equals("")) {
             ActivityUtil.startActivityFinish(MainActivity.this, SelectSmsActivity.class);
         }
     }
@@ -55,51 +57,70 @@ public class MainActivity extends AppCompatActivity {
         textViewNextButton = findViewById(R.id.textViewNextButton);
     }
 
+    private String getMyPhoneNumber() {
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            MainActivity.this.requestPermissions(new String[]{Manifest.permission.READ_PHONE_NUMBERS, Manifest.permission.READ_PHONE_STATE},1001);
+        }
+        String phoneNum = telephonyManager.getLine1Number();
+        if(phoneNum.startsWith("+82")){
+            phoneNum=phoneNum.replace("+82","010");
+        }
+
+        return phoneNum;
+    }
+
     private void setListener() {
 
         textViewNextButton.setOnClickListener(v -> {
 
-                hideKeypad();
+                    hideKeypad();
 
-                Thread thread = new Thread(() -> {
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    Thread thread = new Thread(() -> {
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
 
-                    String phoneNumber=editTextPhoneNumber.getText().toString();
+                        String phoneNumber = editTextPhoneNumber.getText().toString();
 
-                    if(phoneNumber.contains("-")){
-                        phoneNumber.replace("-","");
-                    }
+                        if (phoneNumber.contains("-")) {
+                            phoneNumber.replace("-", "");
+                        }
 
-                    if(phoneNumber.contains("/")){
-                        phoneNumber.replace("/","");
-                    }
+                        if (phoneNumber.contains("/")) {
+                            phoneNumber.replace("/", "");
+                        }
 
-                    if(phoneNumber.contains(" ")){
-                        phoneNumber.replace(" ","");
-                        phoneNumber.trim();
-                    }
+                        if (phoneNumber.contains(" ")) {
+                            phoneNumber.replace(" ", "");
+                            phoneNumber.trim();
+                        }
 
-                    if(phoneNumber.length()<11){
-                        DebugLogUtil.logD(TAG, "비어있음");
-                        Toast.makeText(this, R.string.main_getWrongNumber, Toast.LENGTH_SHORT).show();
-                    }else{
-                        getPhoneNumber();
-                        checkPermission();
-                    }
-                });
+                        if (phoneNumber.length() < 11) {
+                            DebugLogUtil.logD(TAG, "비어있음");
+                            Toast.makeText(this, R.string.main_getWrongNumber, Toast.LENGTH_SHORT).show();
 
-                thread.run();
-            }
+                        } else if (!phoneNumber.equals(getMyPhoneNumber())) {
+                            DebugLogUtil.logD(TAG, getMyPhoneNumber());
+                            Toast.makeText(this, R.string.main_getOtherNumber, Toast.LENGTH_SHORT).show();
+                        } else {
+                            getPhoneNumber();
+                            checkPermission();
+                        }
+                    });
+
+                    thread.run();
+                }
         );
     }
 
-    private void hideKeypad(){
+    private void hideKeypad() {
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(editTextPhoneNumber.getWindowToken(),0);
+        imm.hideSoftInputFromWindow(editTextPhoneNumber.getWindowToken(), 0);
     }
 
     private void getPhoneNumber() {
@@ -113,17 +134,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void checkPermission(){
+    private void checkPermission() {
 
         int permissionResultReadSMS = MainActivity.this.checkSelfPermission(Constant.manifest_permission_Read_SMS);
         int permissionResultReadContact = MainActivity.this.checkSelfPermission(Constant.manifest_permission_Read_Contact);
-        if(permissionResultReadSMS == PackageManager.PERMISSION_GRANTED && permissionResultReadContact==PackageManager.PERMISSION_GRANTED) {
+        if (permissionResultReadSMS == PackageManager.PERMISSION_GRANTED && permissionResultReadContact == PackageManager.PERMISSION_GRANTED) {
             ActivityUtil.startActivityNoFinish(MainActivity.this, SelectSmsActivity.class);
-        }else{
-            if(permissionResultReadSMS == PackageManager.PERMISSION_DENIED) {
+        } else {
+            if (permissionResultReadSMS == PackageManager.PERMISSION_DENIED) {
                 Toast.makeText(this, "권한을 확인해줘야 합니다 ㅠㅜ", Toast.LENGTH_SHORT).show();
                 CheckPermissionUtil.checkPermission(MainActivity.this, Constant.manifest_permission_Read_SMS);
-            }else if(permissionResultReadContact == PackageManager.PERMISSION_DENIED){
+            } else if (permissionResultReadContact == PackageManager.PERMISSION_DENIED) {
                 Toast.makeText(this, "권한을 확인해줘야 합니다 ㅠㅜ", Toast.LENGTH_SHORT).show();
                 CheckPermissionUtil.checkPermission(MainActivity.this, Constant.manifest_permission_Read_Contact);
             }
