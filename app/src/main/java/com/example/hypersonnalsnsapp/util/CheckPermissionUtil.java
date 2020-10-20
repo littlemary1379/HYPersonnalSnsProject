@@ -23,6 +23,15 @@ public class CheckPermissionUtil {
     }
 
     public static boolean checkPermission(Activity activity, String requestPermission) {
+
+        String authority = "";
+
+        if(requestPermission.equals(Constant.manifest_permission_Read_SMS)) {
+            authority = "문자 목록을";
+        }else if(requestPermission.equals(Constant.manifest_permission_Read_Contact)){
+            authority = "연락처 목록을";
+        }
+
         result = false;
 
         int permissionCheck = ContextCompat.checkSelfPermission(activity, requestPermission);
@@ -34,7 +43,7 @@ public class CheckPermissionUtil {
             if (!ActivityCompat.shouldShowRequestPermissionRationale(activity, requestPermission)) {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
                 dialog.setTitle("권한 승인 확인")
-                        .setMessage("문자 내역을 확인하기 위한 권한이 필요합니다. 계속하시겠습니까?")
+                        .setMessage(authority+" 확인하기 위한 권한이 필요합니다. 계속하시겠습니까?")
                         .setPositiveButton("네", (dialog1, which) -> {
                             result = true;
                             activity.requestPermissions(new String[]{requestPermission}, 1001);

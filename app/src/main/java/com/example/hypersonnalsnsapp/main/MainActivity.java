@@ -3,6 +3,8 @@ package com.example.hypersonnalsnsapp.main;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.inputmethod.InputMethodManager;
@@ -30,10 +32,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         findView();
         setListener();
         CheckPermissionUtil.checkPermission(MainActivity.this, Constant.manifest_permission_Read_SMS);
+        CheckPermissionUtil.checkPermission(MainActivity.this, Constant.manifest_permission_Read_Contact);
+        checkSharedReference();
 
+    }
+
+    private void  checkSharedReference(){
+        SharedPreferences sharedPreferences=MainActivity.this.getSharedPreferences(SharedPreferenceUtil.SHARED_PREFERENCES_KEY, Activity.MODE_PRIVATE);
+        String storedPhoneNumber = sharedPreferences.getString(Constant.sharedPreference_phoneNumber, "");
+
+        if(!storedPhoneNumber.equals("")){
+            ActivityUtil.startActivityFinish(MainActivity.this, SelectSmsActivity.class);
+        }
     }
 
     private void findView() {
@@ -101,12 +115,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkPermission(){
 
-        int permissionResult = MainActivity.this.checkSelfPermission(Manifest.permission.READ_SMS);
-        if(permissionResult == PackageManager.PERMISSION_GRANTED) {
+        int permissionResultReadSMS = MainActivity.this.checkSelfPermission(Constant.manifest_permission_Read_SMS);
+        int permissionResultReadContact = MainActivity.this.checkSelfPermission(Constant.manifest_permission_Read_Contact);
+        if(permissionResultReadSMS == PackageManager.PERMISSION_GRANTED && permissionResultReadContact==PackageManager.PERMISSION_GRANTED) {
             ActivityUtil.startActivityNoFinish(MainActivity.this, SelectSmsActivity.class);
         }else{
-            Toast.makeText(this, "권한을 확인해줘야 합니다 ㅠㅜ", Toast.LENGTH_SHORT).show();
-            CheckPermissionUtil.checkPermission(MainActivity.this, Constant.manifest_permission_Read_SMS);
+            if(permissionResultReadSMS == PackageManager.PERMISSION_DENIED) {
+                Toast.makeText(this, "권한을 확인해줘야 합니다 ㅠㅜ", Toast.LENGTH_SHORT).show();
+                CheckPermissionUtil.checkPermission(MainActivity.this, Constant.manifest_permission_Read_SMS);
+            }else if(permissionResultReadContact == PackageManager.PERMISSION_DENIED){
+                Toast.makeText(this, "권한을 확인해줘야 합니다 ㅠㅜ", Toast.LENGTH_SHORT).show();
+                CheckPermissionUtil.checkPermission(MainActivity.this, Constant.manifest_permission_Read_Contact);
+            }
         }
     }
 }
