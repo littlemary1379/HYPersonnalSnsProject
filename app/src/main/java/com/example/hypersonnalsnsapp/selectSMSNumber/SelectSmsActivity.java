@@ -114,6 +114,8 @@ public class SelectSmsActivity extends AppCompatActivity {
             msgList.add(msg);
         }
 
+        c.close();
+
         //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMDD");
         DebugLogUtil.logD(TAG, "msgList.size() : "+msgList.size());
 

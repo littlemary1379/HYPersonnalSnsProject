@@ -10,6 +10,7 @@
     <!--selectSMS-->
     <string name="select_sms_explanation">보내고 싶은 전화번호를 선택해주세요.</string>
     <string name="select_sms_selection">선택</string>
+    <string name="change_contact_explanation">찾는 번호가 없으신가요?</string>
 
 
 </resources>
