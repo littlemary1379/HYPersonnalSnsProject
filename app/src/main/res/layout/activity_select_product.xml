@@ -14,7 +14,8 @@
         app:layout_constraintBottom_toTopOf="@id/linearLayoutProductList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="20dp"/>
 
     <LinearLayout
         android:id="@+id/linearLayoutProductList"
@@ -25,6 +26,51 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewTitle">
+
+        <!--ArrayHeader-->
+        <LinearLayout
+            android:layout_width="373dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="4"
+                android:text="제품 이름"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="3"
+                android:text="개당 가격"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="3"
+                android:text="전체 가격"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="3"
+                android:text="갯수"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
 
         <!--제품 1-->
         <LinearLayout
@@ -39,20 +85,35 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="4"
-                android:text="제품1" />
+                android:text="제품1"
+                android:textSize="16sp"/>
 
             <TextView
+                android:id="@+id/textViewProduct1OneCost"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="3"
-                android:text="00원" />
+                android:text="200원"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/textViewProduct1AllCost"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="3"
+                android:text="0원"
+                android:textSize="16sp"/>
 
             <EditText
+                android:id="@+id/editTextProduct1Count"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="0"/>
+                android:inputType="number"
+                android:text="0"
+                android:textSize="16sp"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -60,19 +121,19 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct1Plus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_up_arrow_292929"/>
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct1Minus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_down_arrow_292929" />
 
             </LinearLayout>
 
@@ -92,20 +153,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="4"
-                android:text="제품2" />
+                android:text="제품2"
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="3"
-                android:text="00원" />
+                android:text="200원"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="3"
+                android:text="0원"
+                android:textSize="16sp"/>
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="0"/>
+                android:text="0"
+                android:textSize="16sp"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -113,19 +185,19 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct2Plus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_up_arrow_292929"/>
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct2Minus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_down_arrow_292929" />
 
             </LinearLayout>
 
@@ -145,20 +217,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="4"
-                android:text="제품3" />
+                android:text="제품3"
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="3"
-                android:text="00원" />
+                android:text="200원"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="3"
+                android:text="0원"
+                android:textSize="16sp"/>
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="0"/>
+                android:text="0"
+                android:textSize="16sp"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -166,19 +249,19 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct3Plus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_up_arrow_292929"/>
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct3Minus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_down_arrow_292929" />
 
             </LinearLayout>
 
@@ -198,20 +281,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="4"
-                android:text="제품4" />
+                android:text="제품4"
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="3"
-                android:text="00원" />>
+                android:text="200원"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="3"
+                android:text="0원"
+                android:textSize="16sp"/>
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="0"/>
+                android:text="0"
+                android:textSize="16sp"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -219,19 +313,19 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct4Plus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_up_arrow_292929"/>
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct4Minus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_down_arrow_292929" />
 
             </LinearLayout>
 
@@ -251,20 +345,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="4"
-                android:text="제품5" />
+                android:text="제품5"
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="3"
-                android:text="00원" />
+                android:text="200원"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="3"
+                android:text="0원"
+                android:textSize="16sp"/>
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="0"/>
+                android:text="0"
+                android:textSize="16sp"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -272,19 +377,19 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct5Plus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_up_arrow_292929"/>
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct5Minus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_down_arrow_292929" />
 
             </LinearLayout>
 
@@ -304,20 +409,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="4"
-                android:text="제품6" />
+                android:text="제품6"
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="3"
-                android:text="00원" />
+                android:text="200원"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="3"
+                android:text="0원"
+                android:textSize="16sp"/>
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="0"/>
+                android:text="0"
+                android:textSize="16sp"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -325,19 +441,19 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct6Plus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_up_arrow_292929"/>
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct6Minus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_down_arrow_292929" />
 
             </LinearLayout>
 
@@ -357,20 +473,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="4"
-                android:text="제품7" />
+                android:text="제품7"
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="3"
-                android:text="00원" />>
+                android:text="200원"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="3"
+                android:text="0원"
+                android:textSize="16sp"/>
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="0"/>
+                android:text="0"
+                android:textSize="16sp"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -378,21 +505,21 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct7Plus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_up_arrow_292929"/>
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct7Minus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:textAlignment="center" />
-
+                    android:src="@drawable/ic_down_arrow_292929" />
             </LinearLayout>
+
 
         </LinearLayout>
 
@@ -409,20 +536,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="4"
-                android:text="제품8" />
+                android:text="제품8"
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="3"
-                android:text="00원" />
+                android:text="200원"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="3"
+                android:text="0원"
+                android:textSize="16sp"/>
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="0"/>
+                android:text="0"
+                android:textSize="16sp"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -430,19 +568,19 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct8Plus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_up_arrow_292929"/>
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct8Minus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_down_arrow_292929" />
 
             </LinearLayout>
 
@@ -462,20 +600,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="4"
-                android:text="제품9" />
+                android:text="제품9"
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="3"
-                android:text="00원" />
+                android:text="200원"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="3"
+                android:text="0원"
+                android:textSize="16sp"/>
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="0"/>
+                android:text="0"
+                android:textSize="16sp"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -483,25 +632,24 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct9Plus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_up_arrow_292929"/>
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct9Minus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_down_arrow_292929" />
 
             </LinearLayout>
 
 
         </LinearLayout>
-
         <!--제품 10-->
         <LinearLayout
             android:layout_width="match_parent"
@@ -515,20 +663,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="4"
-                android:text="제품10" />
+                android:text="제품10"
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="3"
-                android:text="00원" />
+                android:text="200원"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="3"
+                android:text="0원"
+                android:textSize="16sp"/>
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="0"/>
+                android:text="0"
+                android:textSize="16sp"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -536,19 +695,19 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct10Plus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="+"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_up_arrow_292929"/>
 
-                <TextView
+                <ImageView
+                    android:id="@+id/imageViewProduct10Minus"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="-"
-                    android:textAlignment="center" />
+                    android:src="@drawable/ic_down_arrow_292929" />
 
             </LinearLayout>
 
