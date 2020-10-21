@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         DebugLogUtil.logD(TAG, phoneNumber);
 
         SharedPreferenceUtil shUnit = new SharedPreferenceUtil();
-        shUnit.RegisteredSharedPreference(this, Constant.sharedPreference_phoneNumber, phoneNumber);
+        shUnit.registeredSharedPreference(this, Constant.sharedPreference_phoneNumber, phoneNumber);
 
 
     }

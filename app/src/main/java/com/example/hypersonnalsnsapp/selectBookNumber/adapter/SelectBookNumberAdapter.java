@@ -33,7 +33,6 @@ public class SelectBookNumberAdapter extends RecyclerView.Adapter {
 
         SelectBookNumberViewHolder selectBookNumberViewHolder = (SelectBookNumberViewHolder) holder;
         selectBookNumberViewHolder.phoneBook=phoneBookList.get(position);
-        DebugLogUtil.logD(TAG, selectBookNumberViewHolder.phoneBook.getPhoneNumber());
         selectBookNumberViewHolder.updateView();
 
     }

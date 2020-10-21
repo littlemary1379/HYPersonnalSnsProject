@@ -2,10 +2,7 @@ package com.example.hypersonnalsnsapp.getBankAndAddress;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -100,8 +97,8 @@ public class GetBankAndAddressActivity extends AppCompatActivity {
 
             alertBuilder.setPositiveButton("네", (dialog, which) -> {
                 DebugLogUtil.logD(TAG, "확인 버튼 클릭");
-                SharedPreferenceUtil.RegisteredSharedPreference(GetBankAndAddressActivity.this, "bank", bank);
-                SharedPreferenceUtil.RegisteredSharedPreference(GetBankAndAddressActivity.this, "account", account);
+                SharedPreferenceUtil.registeredSharedPreference(GetBankAndAddressActivity.this, "bank", bank);
+                SharedPreferenceUtil.registeredSharedPreference(GetBankAndAddressActivity.this, "account", account);
 
                 ActivityUtil.startActivityNoFinish(GetBankAndAddressActivity.this, SelectProductActivity.class);
             });
