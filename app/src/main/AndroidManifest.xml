@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HYPersonnalSNSApp_light">
-        <activity android:name=".getBankAndAddress.GetBankAndAddressActivity"></activity>
+        <activity android:name=".selectProduct.SelectProductActivity"></activity>
+        <activity android:name=".getBankAndAddress.GetBankAndAddressActivity" />
         <activity android:name=".selectBookNumber.SelectBookNumberActivity" />
         <activity android:name=".selectSMSNumber.SelectSmsActivity" />
         <activity android:name=".main.MainActivity">

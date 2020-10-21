@@ -8,13 +8,15 @@
     tools:context=".main.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutBankName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toTopOf="@id/linearLayoutBankAddressName"
+        app:layout_constraintVertical_chainStyle="packed">
 
         <TextView
             android:id="@+id/textViewBankExplanation"
@@ -39,8 +41,74 @@
             app:layout_constraintStart_toStartOf="@id/textViewBankExplanation"
             app:layout_constraintTop_toBottomOf="@id/textViewBankExplanation" />
 
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutBankAddressName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayoutBankName"
+        app:layout_constraintBottom_toTopOf="@id/linearLayoutBankAddress"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/getBank_address_name_explanation"
+            android:textColor="@color/color_292929"
+            android:layout_gravity="center"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/editTextAccountName"
+            android:inputType="textAutoComplete"
+            android:singleLine="true"
+            android:layout_gravity="center"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_CFCFCF"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutBankAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutBankAddressName"
+        app:layout_constraintBottom_toTopOf="@id/textViewNextButton"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/getBank_address_explanation"
+            android:textColor="@color/color_292929"
+            android:layout_gravity="center"
+            android:textSize="18sp"/>
+        <EditText
+            android:id="@+id/editTextAccount"
+            android:inputType="textAutoComplete"
+            android:singleLine="true"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_CFCFCF"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewNextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutBankAddress"
+        app:layout_constraintEnd_toEndOf="@id/linearLayoutBankAddress"
+        android:layout_marginTop="20dp"
+        android:text="다음"
+        android:textSize="18dp"
+        android:textColor="@color/striking_red"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

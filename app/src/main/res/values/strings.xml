@@ -14,6 +14,10 @@
 
     <!--getBank-->
     <string name="getBank_name_explanation">은행 이름을 골라주세요.</string>
+    <string name="getBank_address_name_explanation">예금주(계좌의 이름)을 적어주세요.</string>
+    <string name="getBank_address_explanation">은행 계좌를 적어주세요.</string>
+    <string name="getBank_dialogTitle">정보 확인</string>
+    <string name="getBank_dialogMessage">입력하신 정보가 맞는지 한번 더 확인해주세요.</string>
 
 
 </resources>

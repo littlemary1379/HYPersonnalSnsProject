@@ -8,7 +8,7 @@ public class SharedPreferenceUtil {
 
     public static String SHARED_PREFERENCES_KEY="SharedPreferences_Key";
 
-    public void RegisteredSharedPreference(Context context, String key, String value){
+    public static void RegisteredSharedPreference(Context context, String key, String value){
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_KEY, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.putString(key, value);
