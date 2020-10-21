@@ -14,12 +14,15 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.hypersonnalsnsapp.R;
 import com.example.hypersonnalsnsapp.main.MainActivity;
+import com.example.hypersonnalsnsapp.selectBookNumber.SelectBookNumberActivity;
 import com.example.hypersonnalsnsapp.selectSMSNumber.adapter.SelectSMSAdapter;
 import com.example.hypersonnalsnsapp.selectSMSNumber.model.Message;
+import com.example.hypersonnalsnsapp.util.ActivityUtil;
 import com.example.hypersonnalsnsapp.util.CheckPermissionUtil;
 import com.example.hypersonnalsnsapp.util.Constant;
 import com.example.hypersonnalsnsapp.util.DebugLogUtil;
@@ -36,6 +39,7 @@ public class SelectSmsActivity extends AppCompatActivity {
     private static final String TAG = "SelectSmsActivity";
 
     private RecyclerView recyclerView;
+    private ImageView imageViewContact;
 
     private List<Message> msgList=new ArrayList<>();
     private SelectSMSAdapter selectSMSAdapter;
@@ -46,23 +50,32 @@ public class SelectSmsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_sms);
         findView();
         init();
+        setListener();
         readSMSMessage();
     }
 
     @Override
     public void finish() {
-        overridePendingTransition(R.anim.in_left,R.anim.out_right);
         super.finish();
+        overridePendingTransition(R.anim.in_left,R.anim.out_right);
     }
 
     private void findView(){
         recyclerView = findViewById(R.id.recyclerview);
+        imageViewContact = findViewById(R.id.imageViewContact);
     }
 
     private void init(){
         selectSMSAdapter = new SelectSMSAdapter();
         recyclerView.setLayoutManager(new LinearLayoutManager(SelectSmsActivity.this));
         recyclerView.setAdapter(selectSMSAdapter);
+    }
+
+    private void setListener(){
+        imageViewContact.setOnClickListener(v -> {
+            DebugLogUtil.logD(TAG, "imageViewContact 클릭");
+            ActivityUtil.startActivityNoFinish(SelectSmsActivity.this, SelectBookNumberActivity.class);
+        });
     }
 
 
