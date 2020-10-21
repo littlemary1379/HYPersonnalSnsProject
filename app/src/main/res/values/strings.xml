@@ -12,5 +12,8 @@
     <string name="select_sms_selection">선택</string>
     <string name="change_contact_explanation">찾는 번호가 없으신가요?</string>
 
+    <!--getBank-->
+    <string name="getBank_name_explanation">은행 이름을 골라주세요.</string>
+
 
 </resources>

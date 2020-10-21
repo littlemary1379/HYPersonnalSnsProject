@@ -21,6 +21,12 @@ public class ActivityUtil {
         startActivity.overridePendingTransition(R.anim.in_left, R.anim.out_right);
     }
 
+    public static void startActivityNoFinish(Context startActivity, Class<?> activityClass){
+        Intent intent= new Intent(startActivity, activityClass);
+        startActivity.startActivity(intent);
+        //startActivity.overridePendingTransition(R.anim.in_left, R.anim.out_right);
+    }
+
     public static void startActivityFinish(Activity startActivity, Class<?> activityClass){
         Intent intent= new Intent(startActivity, activityClass);
         startActivity.startActivity(intent);

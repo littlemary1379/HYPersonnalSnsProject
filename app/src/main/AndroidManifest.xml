@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HYPersonnalSNSApp_light">
-        <activity android:name=".selectBookNumber.SelectBookNumberActivity"></activity>
+        <activity android:name=".getBankAndAddress.GetBankAndAddressActivity"></activity>
+        <activity android:name=".selectBookNumber.SelectBookNumberActivity" />
         <activity android:name=".selectSMSNumber.SelectSmsActivity" />
         <activity android:name=".main.MainActivity">
             <intent-filter>

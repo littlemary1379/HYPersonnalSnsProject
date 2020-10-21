@@ -7,7 +7,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hypersonnalsnsapp.R;
+import com.example.hypersonnalsnsapp.getBankAndAddress.GetBankAndAddressActivity;
 import com.example.hypersonnalsnsapp.selectBookNumber.model.PhoneBook;
+import com.example.hypersonnalsnsapp.util.ActivityUtil;
+import com.example.hypersonnalsnsapp.util.DebugLogUtil;
 
 public class SelectBookNumberViewHolder extends RecyclerView.ViewHolder {
 
@@ -15,6 +18,7 @@ public class SelectBookNumberViewHolder extends RecyclerView.ViewHolder {
 
     private TextView textViewName;
     private TextView textViewPhoneNumber;
+    private TextView textViewSelect;
 
     public PhoneBook phoneBook;
 
@@ -22,11 +26,20 @@ public class SelectBookNumberViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
 
         findView();
+        setListener();
     }
 
     private void findView(){
         textViewName=itemView.findViewById(R.id.textViewName);
         textViewPhoneNumber=itemView.findViewById(R.id.textViewPhoneNumber);
+        textViewSelect=itemView.findViewById(R.id.textViewSelect);
+    }
+
+    private void setListener(){
+        textViewSelect.setOnClickListener(v -> {
+            DebugLogUtil.logD(TAG, "textViewSelect 클릭");
+            ActivityUtil.startActivityNoFinish(itemView.getContext(), GetBankAndAddressActivity.class);
+        });
     }
 
     public void updateView(){
