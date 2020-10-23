@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hypersonnalsnsapp.R;
+import com.example.hypersonnalsnsapp.selectProduct.SelectProductActivity;
 import com.example.hypersonnalsnsapp.util.DebugLogUtil;
 
 public class SelectProductViewHolder extends RecyclerView.ViewHolder {
@@ -29,15 +30,22 @@ public class SelectProductViewHolder extends RecyclerView.ViewHolder {
     private int productCount = 0;
     private int productAllCost = 0;
 
+    private int position;
+
     public SelectProductViewHolder(@NonNull View itemView) {
         super(itemView);
+        initData();
         findView();
         setListener();
     }
 
-    private void findView(){
+    private void initData(){
+        SelectProductActivity.productAllCostList.add(position, 0);
+    }
+
+    private void findView() {
         //product
-        textViewProductName=itemView.findViewById(R.id.textViewProductName);
+        textViewProductName = itemView.findViewById(R.id.textViewProductName);
         textViewProductOneCost = itemView.findViewById(R.id.textViewProductOneCost);
         textViewProductAllCost = itemView.findViewById(R.id.textViewProductAllCost);
         imageViewProductPlus = itemView.findViewById(R.id.imageViewProductPlus);
@@ -45,7 +53,7 @@ public class SelectProductViewHolder extends RecyclerView.ViewHolder {
         editTextProductCount = itemView.findViewById(R.id.editTextProductCount);
     }
 
-    public void updateView(){
+    public void updateView() {
         textViewProductName.setText(productName);
         textViewProductOneCost.setText(productOneCost);
     }
@@ -60,19 +68,25 @@ public class SelectProductViewHolder extends RecyclerView.ViewHolder {
             productCount += 1;
             editTextProductCount.setText(productCount + "");
             textViewProductAllCost.setText((product1OneCost * productCount) + "원");
+            if (productCount != 0) {
+                SelectProductActivity.productAllCostList.add(position, (product1OneCost * productCount));
+            }
         });
 
         imageViewProductMinus.setOnClickListener(v -> {
-            DebugLogUtil.logD(TAG, "textViewProduct1Plus 클릭");
+            DebugLogUtil.logD(TAG, "textViewProduct1Minus 클릭");
             String[] stringProduct1OneCost = textViewProductOneCost.getText().toString().split("원");
             int product1OneCost = Integer.valueOf(stringProduct1OneCost[0]);
-            if(productCount<1){
-                productCount=0;
-            }else{
+            if (productCount < 1) {
+                productCount = 0;
+            } else {
                 productCount -= 1;
             }
             editTextProductCount.setText(productCount + "");
             textViewProductAllCost.setText((product1OneCost * productCount) + "원");
+            if (productCount != 0) {
+                SelectProductActivity.productAllCostList.add(position, (product1OneCost * productCount));
+            }
         });
 
         editTextProductCount.addTextChangedListener(new TextWatcher() {
@@ -98,5 +112,9 @@ public class SelectProductViewHolder extends RecyclerView.ViewHolder {
 
             }
         });
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }

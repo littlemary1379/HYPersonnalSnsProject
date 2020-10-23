@@ -14,6 +14,7 @@ public class Constant {
     //퍼미션 부여
     public static String manifest_permission_Read_SMS = Manifest.permission.READ_SMS;
     public static String manifest_permission_Read_Contact = Manifest.permission.READ_CONTACTS;
+    public static String manifest_permission_Send_Sms = Manifest.permission.SEND_SMS;
 
     //제품 목록
     public static List<String> productList = new ArrayList<>(Arrays.asList("제품 1", "제품 2", "제품 3", "제품 4", "제품 5"));

@@ -80,7 +80,7 @@ public class SelectSmsActivity extends AppCompatActivity {
 
 
     public void readSMSMessage() {
-        Uri allMessage = Uri.parse("content://sms");
+        Uri allMessage = Uri.parse("content://mms-sms/conversations");
         ContentResolver cr = getContentResolver();
         Cursor c = cr.query(allMessage,
                 new String[]{"_id", "thread_id", "address", "person", "date", "body"},

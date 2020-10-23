@@ -34,6 +34,7 @@ public class SelectProductAdapter extends RecyclerView.Adapter {
         SelectProductViewHolder selectProductViewHolder = (SelectProductViewHolder) holder;
         selectProductViewHolder.productName=productList.get(position);
         selectProductViewHolder.productOneCost=productOneCostList.get(position);
+        selectProductViewHolder.setPosition(position);
         selectProductViewHolder.updateView();
 
     }

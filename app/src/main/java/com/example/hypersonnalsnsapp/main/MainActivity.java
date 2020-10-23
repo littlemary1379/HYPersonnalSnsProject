@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setListener();
         CheckPermissionUtil.checkPermission(MainActivity.this, Constant.manifest_permission_Read_SMS);
         CheckPermissionUtil.checkPermission(MainActivity.this, Constant.manifest_permission_Read_Contact);
+        CheckPermissionUtil.checkPermission(MainActivity.this, Constant.manifest_permission_Send_Sms);
         checkSharedReference();
 
     }
@@ -141,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
         int permissionResultReadSMS = MainActivity.this.checkSelfPermission(Constant.manifest_permission_Read_SMS);
         int permissionResultReadContact = MainActivity.this.checkSelfPermission(Constant.manifest_permission_Read_Contact);
+        int permissionResultSendSms = MainActivity.this.checkSelfPermission(Constant.manifest_permission_Send_Sms);
         if (permissionResultReadSMS == PackageManager.PERMISSION_GRANTED && permissionResultReadContact == PackageManager.PERMISSION_GRANTED) {
             ActivityUtil.startActivityNoFinish(MainActivity.this, SelectSmsActivity.class);
         } else {
