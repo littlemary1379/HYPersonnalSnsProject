@@ -3,6 +3,7 @@ package com.example.hypersonnalsnsapp.util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.example.hypersonnalsnsapp.R;
 import com.example.hypersonnalsnsapp.main.MainActivity;
@@ -32,6 +33,13 @@ public class ActivityUtil {
         startActivity.startActivity(intent);
         startActivity.overridePendingTransition(R.anim.in_left, R.anim.out_right);
         startActivity.finish();
+    }
+
+    public static void startActivityNoFinish(Context startActivity, Class<?> activityClass, Bundle bundle){
+        Intent intent= new Intent(startActivity, activityClass);
+        intent.putExtra("bundle", bundle);
+        startActivity.startActivity(intent);
+        //startActivity.overridePendingTransition(R.anim.in_left, R.anim.out_right);
     }
 
 }

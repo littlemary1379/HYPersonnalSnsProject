@@ -41,6 +41,7 @@ public class SelectProductViewHolder extends RecyclerView.ViewHolder {
 
     private void initData(){
         SelectProductActivity.productAllCostList.add(position, 0);
+        SelectProductActivity.productCount.add(position, 0);
     }
 
     private void findView() {
@@ -69,7 +70,8 @@ public class SelectProductViewHolder extends RecyclerView.ViewHolder {
             editTextProductCount.setText(productCount + "");
             textViewProductAllCost.setText((product1OneCost * productCount) + "원");
             if (productCount != 0) {
-                SelectProductActivity.productAllCostList.add(position, (product1OneCost * productCount));
+                SelectProductActivity.productCount.set(position, productCount);
+                SelectProductActivity.productAllCostList.set(position, (product1OneCost * productCount));
             }
         });
 
@@ -85,7 +87,8 @@ public class SelectProductViewHolder extends RecyclerView.ViewHolder {
             editTextProductCount.setText(productCount + "");
             textViewProductAllCost.setText((product1OneCost * productCount) + "원");
             if (productCount != 0) {
-                SelectProductActivity.productAllCostList.add(position, (product1OneCost * productCount));
+                SelectProductActivity.productCount.set(position, productCount);
+                SelectProductActivity.productAllCostList.set(position, (product1OneCost * productCount));
             }
         });
 

@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.telephony.SmsManager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,7 +22,9 @@ import android.widget.Toast;
 import com.example.hypersonnalsnsapp.R;
 import com.example.hypersonnalsnsapp.selectProduct.adapter.SelectProductAdapter;
 import com.example.hypersonnalsnsapp.selectProduct.adapter.SelectProductViewHolder;
+import com.example.hypersonnalsnsapp.util.Constant;
 import com.example.hypersonnalsnsapp.util.DebugLogUtil;
+import com.example.hypersonnalsnsapp.util.SharedPreferenceUtil;
 
 import org.w3c.dom.Text;
 
@@ -35,55 +41,93 @@ public class SelectProductActivity extends AppCompatActivity {
     private SelectProductAdapter selectProductAdapter;
 
     public static List<Integer> productAllCostList;
+    public static List<Integer> productCount;
+    public String phone;
 
-    public SelectProductActivity(){}
+    public SelectProductActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_product);
+        checkBundle();
         findView();
         init();
         setListener();
     }
 
+    private void checkBundle() {
+        Bundle bundle = getIntent().getBundleExtra("bundle");
+        phone = bundle.getString("phone");
+    }
 
 
     private void findView() {
         recyclerView = findViewById(R.id.recyclerview);
-        textViewNextButton=findViewById(R.id.textViewNextButton);
+        textViewNextButton = findViewById(R.id.textViewNextButton);
     }
 
-    private void init(){
+    private void init() {
         productAllCostList = new ArrayList<>();
+        productCount = new ArrayList<>();
         selectProductAdapter = new SelectProductAdapter();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(selectProductAdapter);
     }
 
-    private void setListener(){
+    private void setListener() {
         textViewNextButton.setOnClickListener(v -> {
+            SharedPreferences sharedPreferences = SelectProductActivity.this.getSharedPreferences(SharedPreferenceUtil.SHARED_PREFERENCES_KEY, MODE_PRIVATE);
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("안녕하세요 제품 판매자 입니다. \n");
+            sb.append("이번 달 명세서입니다. \n");
             int productAllCost = 0;
             DebugLogUtil.logD(TAG, "textViewNextButton 클릭");
-            for(int i = 0; i<productAllCostList.size(); i++){
-                productAllCost+=productAllCostList.get(i);
+            for (int i = 0; i < productAllCostList.size(); i++) {
+                if(productCount.get(i)!=0) {
+                    sb.append(Constant.productList.get(i) + " " + productCount.get(i) + "개, " +productAllCostList.get(i)+"\n");
+                    productAllCost += productAllCostList.get(i);
+                }
             }
-            DebugLogUtil.logD(TAG, "allCost : "+productAllCost);
-            String message = "안녕 나는 ㅃ님이고 삐님은 얼른 퇴근하고 싶어 퇴근시켜줘 11분 남았는데 할 일이 없어서 이걸 지금 테스트 하고 있어 엉엉엉 사람살려 끼야아앙 그게 뭐야 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ " +
-                    "왜 자꾸 저걸로 날아가지 짧아서 그런가 오늘은 10월 23일이다 하하호호깔깔 삐님은 요정이 아니고 이것은 삐님의 부캐이다 하하하" +
-                    "뭐야 제한 사라졋어????????????????????????????????????????? 80자 넘게 쓴거 같은데????????????????????????????????????????????????????????????????????????????????????????????????";
-            SendSMS("010-8463-0021", message);
+
+            if(productAllCost==0){
+                Toast.makeText(this, "입력된 값이 없습니다", Toast.LENGTH_SHORT).show();
+                sb.delete(0, sb.length());
+                return;
+            }
+            sb.append("총 "+productAllCost+"원 입니다. \n");
+            sb.append("계좌는 "+sharedPreferences.getString("bank","")+" "+sharedPreferences.getString("account","")+ " 입니다. \n");
+            sb.append("감사합니다.");
+
+            sendMMSIntent(sb.toString());
         });
     }
 
-    private void SendSMS(String phonenumber, String message) {
-        SmsManager smsManager = SmsManager.getDefault();
-        String sendTo = phonenumber;
-        ArrayList partMessage = smsManager.divideMessage(message);
-        smsManager.sendMultipartTextMessage(sendTo, null, partMessage, null, null);
-        Toast.makeText(SelectProductActivity.this, "전송되었습니다.", Toast.LENGTH_SHORT).show();
+//    private void SendSMS(String phonenumber, String message) {
+//        SmsManager smsManager = SmsManager.getDefault();
+//        String sendTo = phonenumber;
+//        ArrayList partMessage = smsManager.divideMessage(message);
+//        smsManager.sendMultipartTextMessage(sendTo, null, partMessage, null, null);
+//        Toast.makeText(SelectProductActivity.this, "전송되었습니다.", Toast.LENGTH_SHORT).show();
+//        finish();
+//    }
+
+    private void sendMMSIntent(String message) {
+        Uri uri = Uri.parse("sms: " + phone);
+        Intent sendIntent = new Intent(Intent.ACTION_SENDTO, uri);
+        sendIntent.putExtra("subject", "MMS TEST");
+        sendIntent.putExtra("sms_body", message);
+        startActivity(sendIntent);
         finish();
+//            if(sendIntent.resolveActivity(getPackageManager())!=null){
+//                DebugLogUtil.logD(TAG, "인텐트가 안열리는거니?");
+//
+//            }else{
+//                DebugLogUtil.logD(TAG, "패키지 매니저가 비었니?");
+//            }
     }
 
 

@@ -3,6 +3,7 @@ package com.example.hypersonnalsnsapp.selectSMSNumber.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -69,8 +70,9 @@ public class SelectSMSViewHolder extends RecyclerView.ViewHolder {
                     DebugLogUtil.logD(TAG, "확인 버튼 클릭");
                     SharedPreferenceUtil.registeredSharedPreference(itemView.getContext(), "bank", bank);
                     SharedPreferenceUtil.registeredSharedPreference(itemView.getContext(), "account", account);
-
-                    ActivityUtil.startActivityNoFinish(itemView.getContext(), SelectProductActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("phone", msg.address);
+                    ActivityUtil.startActivityNoFinish(itemView.getContext(), SelectProductActivity.class, bundle);
                 });
 
                 alertBuilder.setNegativeButton("아니오", (dialog, which) -> {
