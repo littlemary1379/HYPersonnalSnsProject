@@ -143,13 +143,16 @@ public class MainActivity extends AppCompatActivity {
         int permissionResultReadSMS = MainActivity.this.checkSelfPermission(Constant.manifest_permission_Read_SMS);
         int permissionResultReadContact = MainActivity.this.checkSelfPermission(Constant.manifest_permission_Read_Contact);
         int permissionResultSendSms = MainActivity.this.checkSelfPermission(Constant.manifest_permission_Send_Sms);
-        if (permissionResultReadSMS == PackageManager.PERMISSION_GRANTED && permissionResultReadContact == PackageManager.PERMISSION_GRANTED) {
+        if (permissionResultReadSMS == PackageManager.PERMISSION_GRANTED && permissionResultReadContact == PackageManager.PERMISSION_GRANTED && permissionResultSendSms == PackageManager.PERMISSION_GRANTED) {
             ActivityUtil.startActivityNoFinish(MainActivity.this, SelectSmsActivity.class);
         } else {
             if (permissionResultReadSMS == PackageManager.PERMISSION_DENIED) {
                 Toast.makeText(this, "권한을 확인해줘야 합니다 ㅠㅜ", Toast.LENGTH_SHORT).show();
                 CheckPermissionUtil.checkPermission(MainActivity.this, Constant.manifest_permission_Read_SMS);
             } else if (permissionResultReadContact == PackageManager.PERMISSION_DENIED) {
+                Toast.makeText(this, "권한을 확인해줘야 합니다 ㅠㅜ", Toast.LENGTH_SHORT).show();
+                CheckPermissionUtil.checkPermission(MainActivity.this, Constant.manifest_permission_Read_Contact);
+            }else if (permissionResultReadSMS == PackageManager.PERMISSION_DENIED) {
                 Toast.makeText(this, "권한을 확인해줘야 합니다 ㅠㅜ", Toast.LENGTH_SHORT).show();
                 CheckPermissionUtil.checkPermission(MainActivity.this, Constant.manifest_permission_Read_Contact);
             }

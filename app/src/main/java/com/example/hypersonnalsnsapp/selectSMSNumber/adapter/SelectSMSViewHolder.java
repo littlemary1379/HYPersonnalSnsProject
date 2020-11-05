@@ -54,7 +54,9 @@ public class SelectSMSViewHolder extends RecyclerView.ViewHolder {
             String account = sharedPreferences.getString("account", "");
 
             if (bank.equals("") || account.equals("")) {
-                ActivityUtil.startActivityNoFinish(itemView.getContext(), GetBankAndAddressActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("phone", msg.address);
+                ActivityUtil.startActivityNoFinish(itemView.getContext(), GetBankAndAddressActivity.class, bundle);
             } else {
 
                 AlertDialog.Builder alertBuilder = new AlertDialog.Builder(itemView.getContext());
@@ -77,6 +79,8 @@ public class SelectSMSViewHolder extends RecyclerView.ViewHolder {
 
                 alertBuilder.setNegativeButton("아니오", (dialog, which) -> {
                     DebugLogUtil.logD(TAG, "아니오 버튼 클릭");
+                    Bundle bundle = new Bundle();
+                    bundle.putString("phone", msg.address);
                     ActivityUtil.startActivityNoFinish(itemView.getContext(), GetBankAndAddressActivity.class);
                 });
 

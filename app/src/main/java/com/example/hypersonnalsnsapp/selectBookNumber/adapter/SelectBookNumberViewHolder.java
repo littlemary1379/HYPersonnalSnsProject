@@ -3,6 +3,7 @@ package com.example.hypersonnalsnsapp.selectBookNumber.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -48,6 +49,8 @@ public class SelectBookNumberViewHolder extends RecyclerView.ViewHolder {
             String account = sharedPreferences.getString("account", "");
 
             if (bank.equals("") || account.equals("")) {
+                Bundle bundle = new Bundle();
+                bundle.putString("phone", phoneBook.getPhoneNumber());
                 ActivityUtil.startActivityNoFinish(itemView.getContext(), GetBankAndAddressActivity.class);
             } else {
 
@@ -65,11 +68,18 @@ public class SelectBookNumberViewHolder extends RecyclerView.ViewHolder {
                     SharedPreferenceUtil.registeredSharedPreference(itemView.getContext(), "bank", bank);
                     SharedPreferenceUtil.registeredSharedPreference(itemView.getContext(), "account", account);
 
-                    ActivityUtil.startActivityNoFinish(itemView.getContext(), SelectProductActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("phone", phoneBook.getPhoneNumber());
+
+                    ActivityUtil.startActivityNoFinish(itemView.getContext(), SelectProductActivity.class, bundle);
                 });
 
                 alertBuilder.setNegativeButton("아니오", (dialog, which) -> {
                     DebugLogUtil.logD(TAG, "아니오 버튼 클릭");
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("phone", phoneBook.getPhoneNumber());
+
                     ActivityUtil.startActivityNoFinish(itemView.getContext(), GetBankAndAddressActivity.class);
                 });
 

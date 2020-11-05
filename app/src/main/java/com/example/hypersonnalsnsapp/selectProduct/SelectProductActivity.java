@@ -42,7 +42,7 @@ public class SelectProductActivity extends AppCompatActivity {
 
     public static List<Integer> productAllCostList;
     public static List<Integer> productCount;
-    public String phone;
+    public String phone="";
 
     public SelectProductActivity() {
     }
@@ -117,6 +117,7 @@ public class SelectProductActivity extends AppCompatActivity {
 
     private void sendMMSIntent(String message) {
         Uri uri = Uri.parse("sms: " + phone);
+        DebugLogUtil.logD(TAG, phone);
         Intent sendIntent = new Intent(Intent.ACTION_SENDTO, uri);
         sendIntent.putExtra("subject", "MMS TEST");
         sendIntent.putExtra("sms_body", message);

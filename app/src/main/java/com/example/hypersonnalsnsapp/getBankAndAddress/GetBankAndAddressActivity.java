@@ -27,14 +27,21 @@ public class GetBankAndAddressActivity extends AppCompatActivity {
     private EditText editTextAccount;
 
     private String bank="";
+    private String phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_bank_and_address);
+        checkBundle();
         findView();
         initSpinner();
         setListener();
+    }
+
+    private void checkBundle() {
+        Bundle bundle = getIntent().getBundleExtra("bundle");
+        phone = bundle.getString("phone");
     }
 
     private void findView(){
@@ -100,7 +107,10 @@ public class GetBankAndAddressActivity extends AppCompatActivity {
                 SharedPreferenceUtil.registeredSharedPreference(GetBankAndAddressActivity.this, "bank", bank);
                 SharedPreferenceUtil.registeredSharedPreference(GetBankAndAddressActivity.this, "account", account);
 
-                ActivityUtil.startActivityNoFinish(GetBankAndAddressActivity.this, SelectProductActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("phone", phone);
+
+                ActivityUtil.startActivityNoFinish(GetBankAndAddressActivity.this, SelectProductActivity.class, bundle);
             });
 
             alertBuilder.setNegativeButton("아니오", (dialog, which) -> DebugLogUtil.logD(TAG, "아니오 버튼 클릭"));
